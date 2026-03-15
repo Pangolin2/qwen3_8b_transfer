@@ -1,0 +1,7 @@
+config yame path: /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/configs/qwen3/finetune_qwen3_8b_lora_1card_debug.yaml
+
+dataset:/mnt/hzl/10_qwen3_transfer/data/alpaca-gpt4-data/alpaca_gpt4_data_test_100.json
+
+qwen3-8b model path: /mnt/hzl/10_qwen3_transfer/model/Qwen3-8B
+
+mindformer code: /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0
