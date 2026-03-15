@@ -1,28 +1,27 @@
-indformers_parallel_core_training_graph_tensor_parallel_lora_layers_RowParallelLinearWithLoRA_construct_1344:_{[0]: ValueNode<FuncGraph> 520__tuple_getitem_by_number_1347, [1]: CNode_1348, [2]: ValueNode<Int64Imm> 1}
-.^H2026-03-15 13:39:23,796 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:542] - INFO - Full model flops is 32915085852672, Shard model flops is 32915085852672.
-2026-03-15 13:39:23,803 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:616] - INFO - { Epoch:[  1/  1], step:[    1/   25], loss: 15.994116, per_step_time: 153259ms, lr: 5e-06, overflow cond: False, loss_scale: 1.0, global_norm: [18.362312], train_throughput_per_npu: 0.215T
-2026-03-15 13:39:23,806 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:633] - INFO -    4.0% |██                                                | 0.00652 samples/s/p  1:01:18 }
-2026-03-15 13:39:24,790 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:616] - INFO - { Epoch:[  1/  1], step:[    2/   25], loss: 15.751992, per_step_time: 577ms, lr: 5e-06, overflow cond: False, loss_scale: 1.0, global_norm: [16.522688], train_throughput_per_npu: 56.959T
-2026-03-15 13:39:24,797 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:633] - INFO -    8.0% |████                                              | 1.73050 samples/s/p  0:00:13 }
-2026-03-15 13:39:25,398 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:616] - INFO - { Epoch:[  1/  1], step:[    3/   25], loss: 16.604145, per_step_time: 581ms, lr: 5e-06, overflow cond: False, loss_scale: 1.0, global_norm: [17.509201], train_throughput_per_npu: 56.588T
-2026-03-15 13:39:25,404 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:633] - INFO -   12.0% |██████                                            | 1.71920 samples/s/p  0:00:12 }
-2026-03-15 13:39:25,991 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:616] - INFO - { Epoch:[  1/  1], step:[    4/   25], loss: 15.940238, per_step_time: 578ms, lr: 5e-06, overflow cond: False, loss_scale: 1.0, global_norm: [14.831752], train_throughput_per_npu: 56.877T
-2026-03-15 13:39:25,994 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:633] - INFO -   16.0% |████████                                          | 1.72799 samples/s/p  0:00:12 }
-[WARNING] RUNTIME_FRAMEWORK(23131,ffff7e9c3e00,python):2026-03-15-13:39:26.577.868 [mindspore/ccsrc/runtime/core/graph_scheduler/base/graph_scheduler.cc:1290] BindCoreForRuntimeThread] Skip to bind thread core for 'runtime actor' as no available core assigned.
-2026-03-15 13:39:26,578 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:616] - INFO - { Epoch:[  1/  1], step:[    5/   25], loss: 16.594877, per_step_time: 576ms, lr: 5e-06, overflow cond: False, loss_scale: 1.0, global_norm: [17.419353], train_throughput_per_npu: 57.088T
-2026-03-15 13:39:26,582 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:633] - INFO -   20.0% |██████████                                        | 1.73440 samples/s/p  0:00:11 }
-2026-03-15 13:39:27,165 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:616] - INFO - { Epoch:[  1/  1], step:[    6/   25], loss: 15.939915, per_step_time: 575ms, lr: 5e-06, overflow cond: False, loss_scale: 1.0, global_norm: [14.462115], train_throughput_per_npu: 57.199T
-2026-03-15 13:39:27,169 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:633] - INFO -   24.0% |████████████                                      | 1.73777 samples/s/p  0:00:10 }
-2026-03-15 13:39:27,754 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:616] - INFO - { Epoch:[  1/  1], step:[    7/   25], loss: 14.734194, per_step_time: 577ms, lr: 5e-06, overflow cond: False, loss_scale: 1.0, global_norm: [14.444327], train_throughput_per_npu: 57.009T
-2026-03-15 13:39:27,758 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:633] - INFO -   28.0% |██████████████        
-
-| 1.73202 samples/s/p  0:00:10 }
-2026-03-15 13:39:28,345 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_82026-03-15 13:39:38,371 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:1724] - INFO - ......Saving ckpt......
-2026-03-15 13:39:38,375 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:1783] - INFO - global_batch_size: 1
-2026-03-15 13:39:38,377 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:1784] - INFO - epoch_num: 25
-2026-03-15 13:39:38,380 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:1785] - INFO - step_num: 25
-2026-03-15 13:39:38,382 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:1786] - INFO - global_step: 25
-2026-03-15 13:40:29,379 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:1639] - INFO - Finish saving ckpt of epoch 25 step 1 using -854.554 seconds
-2026-03-15 13:40:29,381 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/trainer/base_trainer.py:1557] - INFO - .........Training Over!.............
-root@10-175-221-8:/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0#
-root@10-175-221-8:/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0#
+| step |      loss | global_norm | overflow | loss_scale |
+| ---- | --------: | ----------: | -------- | ---------: |
+| 1    | 15.994116 |   18.363276 | False    |        1.0 |
+| 2    | 15.762886 |   16.694190 | False    |        1.0 |
+| 3    | 16.583115 |   17.367466 | False    |        1.0 |
+| 4    | 15.922192 |   14.777558 | False    |        1.0 |
+| 5    | 16.606695 |   17.294086 | False    |        1.0 |
+| 6    | 15.940705 |   14.446381 | False    |        1.0 |
+| 7    | 14.742739 |   14.557197 | False    |        1.0 |
+| 8    | 16.535093 |   16.793005 | False    |        1.0 |
+| 9    | 18.153065 |   16.866010 | False    |        1.0 |
+| 10   | 15.514065 |   14.986671 | False    |        1.0 |
+| 11   | 14.842097 |   13.528371 | False    |        1.0 |
+| 12   | 15.031343 |   13.323236 | False    |        1.0 |
+| 13   | 15.078642 |   15.839686 | False    |        1.0 |
+| 14   | 13.316998 |    9.804013 | False    |        1.0 |
+| 15   | 16.386261 |   18.083832 | False    |        1.0 |
+| 16   | 20.476391 |   24.483217 | False    |        1.0 |
+| 17   | 15.943971 |   16.552122 | False    |        1.0 |
+| 18   | 15.183918 |   15.458350 | False    |        1.0 |
+| 19   | 16.258022 |   18.503250 | False    |        1.0 |
+| 20   | 14.880547 |   17.422707 | False    |        1.0 |
+| 21   | 14.626083 |   14.995673 | False    |        1.0 |
+| 22   | 15.866027 |   16.819584 | False    |        1.0 |
+| 23   | 15.227503 |   16.916020 | False    |        1.0 |
+| 24   | 16.030104 |   14.749761 | False    |        1.0 |
+| 25   | 17.689260 |   25.118725 | False    |        1.0 |
