@@ -1,147 +1,28 @@
-2026-03-15 13:14:29,543 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/trainer/base_trainer.py:1541] - INFO - .........Model Compiling, Please Wait a Moment...........
-2026-03-15 13:14:29,545 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/trainer/base_trainer.py:1543] - INFO - .........train network delay initialize..........
-2026-03-15 13:14:29,701 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/trainer/base_trainer.py:1546] - INFO - .........optimizer delay initialize..........
-2026-03-15 13:14:29,860 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/trainer/base_trainer.py:1548] - INFO - .........Starting Training Model..........
-[WARNING] ME(22382:281473686846976,MainProcess):2026-03-15-13:14:29.863.000 [mindspore/train/model.py:1384] For CheckpointMonitor callback, {'end', 'step_end'} methods may not be supported in later version, Use methods prefixed with 'on_train' or 'on_eval' instead when using customized callbacks.
-[WARNING] ME(22382,ffffb31e3e00,python):2026-03-15-13:14:31.824.775 [mindspore/ccsrc/tools/error_handler/error_config.cc:215] operator()] Value of `MS_ENABLE_TFT` is ``
-[WARNING] ME(22382,ffffb31e3e00,python):2026-03-15-13:14:31.824.846 [mindspore/ccsrc/tools/error_handler/error_config.cc:163] operator()] Can find `TRE` in environment var `MS_ENABLE_TFT`
-[ERROR] ANALYZER(22382,ffffb31e3e00,python):2026-03-15-13:14:32.840.378 [mindspore/ccsrc/frontend/jit/ps/static_analysis/evaluator.cc:724] Run] Primitive: <PrimitiveFunctionEvaluator_PrimitiveFunction_Mul> infer failed, failed info: For 'Mul', input1.shape and input2.shape need to broadcast. The value of input1.shape[5] or input2.shape[5] must be 1 or -1 when they are not the same, but got input1.shape = [1, 1, 1024] and input2.shape = [1, 4096, 4096]
+indformers_parallel_core_training_graph_tensor_parallel_lora_layers_RowParallelLinearWithLoRA_construct_1344:_{[0]: ValueNode<FuncGraph> 520__tuple_getitem_by_number_1347, [1]: CNode_1348, [2]: ValueNode<Int64Imm> 1}
+.^H2026-03-15 13:39:23,796 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:542] - INFO - Full model flops is 32915085852672, Shard model flops is 32915085852672.
+2026-03-15 13:39:23,803 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:616] - INFO - { Epoch:[  1/  1], step:[    1/   25], loss: 15.994116, per_step_time: 153259ms, lr: 5e-06, overflow cond: False, loss_scale: 1.0, global_norm: [18.362312], train_throughput_per_npu: 0.215T
+2026-03-15 13:39:23,806 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:633] - INFO -    4.0% |██                                                | 0.00652 samples/s/p  1:01:18 }
+2026-03-15 13:39:24,790 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:616] - INFO - { Epoch:[  1/  1], step:[    2/   25], loss: 15.751992, per_step_time: 577ms, lr: 5e-06, overflow cond: False, loss_scale: 1.0, global_norm: [16.522688], train_throughput_per_npu: 56.959T
+2026-03-15 13:39:24,797 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:633] - INFO -    8.0% |████                                              | 1.73050 samples/s/p  0:00:13 }
+2026-03-15 13:39:25,398 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:616] - INFO - { Epoch:[  1/  1], step:[    3/   25], loss: 16.604145, per_step_time: 581ms, lr: 5e-06, overflow cond: False, loss_scale: 1.0, global_norm: [17.509201], train_throughput_per_npu: 56.588T
+2026-03-15 13:39:25,404 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:633] - INFO -   12.0% |██████                                            | 1.71920 samples/s/p  0:00:12 }
+2026-03-15 13:39:25,991 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:616] - INFO - { Epoch:[  1/  1], step:[    4/   25], loss: 15.940238, per_step_time: 578ms, lr: 5e-06, overflow cond: False, loss_scale: 1.0, global_norm: [14.831752], train_throughput_per_npu: 56.877T
+2026-03-15 13:39:25,994 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:633] - INFO -   16.0% |████████                                          | 1.72799 samples/s/p  0:00:12 }
+[WARNING] RUNTIME_FRAMEWORK(23131,ffff7e9c3e00,python):2026-03-15-13:39:26.577.868 [mindspore/ccsrc/runtime/core/graph_scheduler/base/graph_scheduler.cc:1290] BindCoreForRuntimeThread] Skip to bind thread core for 'runtime actor' as no available core assigned.
+2026-03-15 13:39:26,578 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:616] - INFO - { Epoch:[  1/  1], step:[    5/   25], loss: 16.594877, per_step_time: 576ms, lr: 5e-06, overflow cond: False, loss_scale: 1.0, global_norm: [17.419353], train_throughput_per_npu: 57.088T
+2026-03-15 13:39:26,582 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:633] - INFO -   20.0% |██████████                                        | 1.73440 samples/s/p  0:00:11 }
+2026-03-15 13:39:27,165 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:616] - INFO - { Epoch:[  1/  1], step:[    6/   25], loss: 15.939915, per_step_time: 575ms, lr: 5e-06, overflow cond: False, loss_scale: 1.0, global_norm: [14.462115], train_throughput_per_npu: 57.199T
+2026-03-15 13:39:27,169 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:633] - INFO -   24.0% |████████████                                      | 1.73777 samples/s/p  0:00:10 }
+2026-03-15 13:39:27,754 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:616] - INFO - { Epoch:[  1/  1], step:[    7/   25], loss: 14.734194, per_step_time: 577ms, lr: 5e-06, overflow cond: False, loss_scale: 1.0, global_norm: [14.444327], train_throughput_per_npu: 57.009T
+2026-03-15 13:39:27,758 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:633] - INFO -   28.0% |██████████████        
 
-----------------------------------------------------
-- C++ Call Stack: (For framework developers)
-----------------------------------------------------
-mindspore/ops/ops_utils/op_utils.cc:86 CalBroadCastShape
-
-----------------------------------------------------
-- The Traceback of Net Construct Code:
-----------------------------------------------------
-The depth of the current stack is 63.
-You can get more call stack information in analyze_fail.ir.
-
-# 0 In file /usr/local/python3.11/lib/python3.11/site-packages/mindspore/train/dataset_helper.py:121, 15~37
-        return self.network(*outputs)
-               ^~~~~~~~~~~~~~~~~~~~~~
-# 1 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/wrapper/wrapper.py:329~331, 8~56
-        if self.dump_device_local_norm:
-# 2 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/wrapper/wrapper.py:333~336, 8~88
-        if self.use_legacy:
-# 3 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/wrapper/wrapper.py:336, 12~88
-            loss, grads, grad_scale_factor = self.grads_for_mcore(scaling_sens, *inputs)
-            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# 4 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/wrapper/wrapper.py:341~343, 8~48
-        if self.local_norm:
-# 5 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/wrapper/wrapper.py:353~354, 8~59
-        if self.use_clip_grad:
-# 6 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/wrapper/wrapper.py:354, 12~59
-            grads, global_norm = self.clip_grad_norm(grads)
-            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# 7 In file /usr/local/python3.11/lib/python3.11/site-packages/mindspore/train/dataset_helper.py:121, 15~27
-        return self.network(*outputs)
-               ^~~~~~~~~~~~
-# 8 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/wrapper/wrapper.py:369~370, 8~95
-        if self.use_graceful_exit:
-# 9 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/wrapper/wrapper.py:336, 45~88
-           loss, grads, grad_scale_factor = self.grads_for_mcore(scaling_sens, *inputs)
-                                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# 10 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/wrapper/wrapper.py:412~439, 8~54
-        if self.calculate_per_token_loss:
-# 11 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/wrapper/wrapper.py:431, 42~63
-            lm_loss, mtp_loss, aux_loss = self.network(*inputs)
-                                          ^~~~~~~~~~~~~~~~~~~~~
-# 12 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/wrapper/wrapper.py:459~460, 8~33
-        for key, val in zip(self.construct_args_key, inputs):
-        ^
-......
-
-# 15 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/pet/models/lora.py:233, 15~46
-        return self.network(*inputs, **kwargs)
-               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# 16 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/models/qwen3/modeling_qwen3_train.py:71~81, 15~9
-        return self.model(
-# 17 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/models/qwen3/modeling_qwen3_train.py:71, 15~25
-        return self.model(
-               ^~~~~~~~~~
-# 18 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/parallel_core/training_graph/base_models/gpt/gpt_model.py:453~454, 75~57
-        labels, attention_mask, loss_mask, local_labels, local_loss_mask = self._preprocess_input_labels_and_masks(
-# 19 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/parallel_core/training_graph/base_models/gpt/gpt_model.py:605, 15~93
-        return self.preprocess_labels_and_masks(input_ids, labels, attention_mask, loss_mask)
-               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# 20 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/parallel_core/training_graph/base_models/gpt/gpt_model.py:605, 15~47
-        return self.preprocess_labels_and_masks(input_ids, labels, attention_mask, loss_mask)
-               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# 21 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/parallel_core/training_graph/base_models/gpt/gpt_model.py:139~142, 8~56
-        if self.use_attn_mask_compression:
-# 22 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/parallel_core/training_graph/base_models/gpt/gpt_model.py:141~142, 8~56
-        elif attention_mask is None:
-# 23 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/parallel_core/training_graph/base_models/gpt/gpt_model.py:142, 29~56
-            attention_mask = self.casual_mask(input_ids)
-                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-# 24 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/parallel_core/training_graph/transformer/mask_generate.py:94~96, 8~33
-        if self.use_attn_mask_compression:
-        ^
-# 25 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/parallel_core/training_graph/base_models/gpt/gpt_model.py:142, 29~45
-            attention_mask = self.casual_mask(input_ids)
-                             ^~~~~~~~~~~~~~~~
-# 26 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/parallel_core/training_graph/transformer/mask_generate.py:110~114, 8~68
-        if not self.is_dynamic:
-# 27 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/parallel_core/training_graph/transformer/mask_generate.py:111, 12~73
-            lower_triangle = self.expand_dim(self.lower_triangle_mask, 0)
-            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# 28 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/parallel_core/training_graph/transformer/mask_generate.py:120~121, 8~68
-        if self.use_flash_attention or self.use_prompt_flash_attention:
-        ^
-# 29 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/parallel_core/training_graph/transformer/mask_generate.py:121, 12~68
-            attention_mask = self.cast(attention_mask, mstype.uint8)
-            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# 30 In file /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/parallel_core/training_graph/transformer/mask_generate.py:117, 25~65
-        attention_mask = self.mul(attention_mask, lower_triangle)
-                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-(See file '/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/rank_0/om/analyze_fail.ir' for more details. Get instructions about `analyze_fail.ir` at https://www.mindspore.cn/search?inputValue=analyze_fail.ir)
-Traceback (most recent call last):
-  File "/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/run_mindformer.py", line 341, in <module>
-    main(config_)
-  File "/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/run_mindformer.py", line 70, in main
-    trainer.train()
-  File "/usr/local/python3.11/lib/python3.11/site-packages/mindspore/_checkparam.py", line 1397, in wrapper
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/trainer/trainer.py", line 498, in train
-    self.trainer.train(
-  File "/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/trainer/causal_language_modeling/causal_language_modeling.py", line 108, in train
-    self.training_process(
-  File "/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/mindformers/trainer/base_trainer.py", line 1549, in training_process
-    model.train(config.runner_config.epochs, dataset,
-  File "/usr/local/python3.11/lib/python3.11/site-packages/mindspore/train/model.py", line 1350, in train
-    self._train(epoch,
-  File "/usr/local/python3.11/lib/python3.11/site-packages/mindspore/train/model.py", line 311, in wrapper
-    return func(self, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/python3.11/lib/python3.11/site-packages/mindspore/train/model.py", line 122, in wrapper
-    func(self, *args, **kwargs)
-  File "/usr/local/python3.11/lib/python3.11/site-packages/mindspore/train/model.py", line 1052, in _train
-    self._train_dataset_sink_process(epoch, train_dataset, list_callback,
-  File "/usr/local/python3.11/lib/python3.11/site-packages/mindspore/train/model.py", line 1125, in _train_dataset_sink_process
-    outputs = train_network(*inputs)
-              ^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/python3.11/lib/python3.11/site-packages/mindspore/nn/cell.py", line 1369, in __call__
-    out = self.compile_and_run(*args, **kwargs)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/python3.11/lib/python3.11/site-packages/mindspore/nn/cell.py", line 1752, in compile_and_run
-    self.compile(*args, **kwargs)
-  File "/usr/local/python3.11/lib/python3.11/site-packages/mindspore/nn/cell.py", line 1734, in compile
-    _cell_graph_executor.compile(self, *compile_args, phase=self.phase,
-  File "/usr/local/python3.11/lib/python3.11/site-packages/mindspore/common/api.py", line 2309, in compile
-    result = self._graph_executor.compile(
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-ValueError: For 'Mul', input1.shape and input2.shape need to broadcast. The value of input1.shape[5] or input2.shape[5] must be 1 or -1 when they are not the same, but got input1.shape = [1, 1, 1024] and input2.shape = [1, 4096, 4096]
-
-----------------------------------------------------
-- C++ Call Stack: (For framework developers)
-----------------------------------------------------
-mindspore/ops/ops_utils/op_utils.cc:86 CalBroadCastShape
-
-----------------------------------------------------
-- The Traceback of Net Construct Code:
-----------------------------------------------------
-The depth of the current stack is 63.
-You can get more call stack information in analyze_fail.ir.
+| 1.73202 samples/s/p  0:00:10 }
+2026-03-15 13:39:28,345 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_82026-03-15 13:39:38,371 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:1724] - INFO - ......Saving ckpt......
+2026-03-15 13:39:38,375 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:1783] - INFO - global_batch_size: 1
+2026-03-15 13:39:38,377 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:1784] - INFO - epoch_num: 25
+2026-03-15 13:39:38,380 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:1785] - INFO - step_num: 25
+2026-03-15 13:39:38,382 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:1786] - INFO - global_step: 25
+2026-03-15 13:40:29,379 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/core/callback/callback.py:1639] - INFO - Finish saving ckpt of epoch 25 step 1 using -854.554 seconds
+2026-03-15 13:40:29,381 - mindformers/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0/output_qwen3_8b_lora_1card/log[mindformers/trainer/base_trainer.py:1557] - INFO - .........Training Over!.............
+root@10-175-221-8:/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0#
+root@10-175-221-8:/mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0#
