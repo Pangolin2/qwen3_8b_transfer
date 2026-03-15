@@ -118,6 +118,7 @@ recompute_config:
 # Model configuration
 model:
   model_config:
+    seq_length: 1024
     qkv_concat: True
     hidden_dropout: 0.0
     input_sliced_sig: True
@@ -167,7 +168,3 @@ profile_stop_step: 10
 init_start_profile: False
 profile_communication: False
 profile_memory: True
-
-layer_scale: False
-layer_decay: 0.65
-lr_scale_factor: 256
