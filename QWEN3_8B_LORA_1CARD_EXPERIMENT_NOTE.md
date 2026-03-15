@@ -78,6 +78,17 @@
 - 开启 `nan/inf` 检查
 - 增加 `TrainingStateMonitor`
 
+### 3. 阶段 2 第二组实验配置
+
+- 文件：[finetune_qwen3_8b_lora_1card_acc_group2.yaml](/home/leon/Code/mindformers-r1.8.0/configs/qwen3/finetune_qwen3_8b_lora_1card_acc_group2.yaml)
+
+用途：
+
+- 在第一组基础上做动态 loss scale 对照实验
+- 保留 `local_norm`
+- 保留 `nan/inf` 检查
+- 将 `scale_sense` 从固定 `1.0` 改为 `AdaptiveLossScaleUpdateCell`
+
 ## 阶段 1 配置修改摘要
 
 相对官方 [`finetune_qwen3.yaml`](/home/leon/Code/mindformers-r1.8.0/configs/qwen3/finetune_qwen3.yaml) 的主要修改：
@@ -272,6 +283,94 @@ callbacks:
 - `global_norm` 不应异常尖刺
 - `local_norm` 不应出现明显异常值
 
+## 阶段 2 第一组实验结果
+
+实验名称：
+
+- `acc_group1`
+
+配置文件：
+
+- [finetune_qwen3_8b_lora_1card_acc_group1.yaml](/home/leon/Code/mindformers-r1.8.0/configs/qwen3/finetune_qwen3_8b_lora_1card_acc_group1.yaml)
+
+实验结果表：
+
+| step | loss | global_norm | overflow | loss_scale |
+| ---- | ---: | ----------: | -------- | ---------: |
+| 1 | 15.994116 | 18.363276 | False | 1.0 |
+| 2 | 15.762886 | 16.694190 | False | 1.0 |
+| 3 | 16.583115 | 17.367466 | False | 1.0 |
+| 4 | 15.922192 | 14.777558 | False | 1.0 |
+| 5 | 16.606695 | 17.294086 | False | 1.0 |
+| 6 | 15.940705 | 14.446381 | False | 1.0 |
+| 7 | 14.742739 | 14.557197 | False | 1.0 |
+| 8 | 16.535093 | 16.793005 | False | 1.0 |
+| 9 | 18.153065 | 16.866010 | False | 1.0 |
+| 10 | 15.514065 | 14.986671 | False | 1.0 |
+| 11 | 14.842097 | 13.528371 | False | 1.0 |
+| 12 | 15.031343 | 13.323236 | False | 1.0 |
+| 13 | 15.078642 | 15.839686 | False | 1.0 |
+| 14 | 13.316998 | 9.804013 | False | 1.0 |
+| 15 | 16.386261 | 18.083832 | False | 1.0 |
+| 16 | 20.476391 | 24.483217 | False | 1.0 |
+| 17 | 15.943971 | 16.552122 | False | 1.0 |
+| 18 | 15.183918 | 15.458350 | False | 1.0 |
+| 19 | 16.258022 | 18.503250 | False | 1.0 |
+| 20 | 14.880547 | 17.422707 | False | 1.0 |
+| 21 | 14.626083 | 14.995673 | False | 1.0 |
+| 22 | 15.866027 | 16.819584 | False | 1.0 |
+| 23 | 15.227503 | 16.916020 | False | 1.0 |
+| 24 | 16.030104 | 14.749761 | False | 1.0 |
+| 25 | 17.689260 | 25.118725 | False | 1.0 |
+
+初步结论：
+
+- 第一组实验未出现 `nan/inf`
+- 全程 `overflow=False`
+- `loss_scale` 固定为 `1.0`，无异常
+- `global_norm` 大体处于可接受波动范围
+- step 16 和 step 25 的 `global_norm` 明显偏高，但未引发 overflow，属于后续对照实验需要重点关注的点
+- 当前可以进入第二组实验，观察动态 loss scale 是否会带来更平稳的数值表现
+
+建议重点对比项：
+
+- step 1 到 step 5 的 `loss/global_norm`
+- step 16 和 step 25 附近的 `global_norm`
+- 动态 loss scale 是否发生变化
+- 是否出现新的 overflow
+
+## 阶段 2 第二组实验说明
+
+第二组实验用于做动态 loss scale 对照。
+
+相对第一组实验，唯一核心改动是：
+
+```yaml
+runner_wrapper:
+  type: MFTrainOneStepCell
+  scale_sense:
+    type: AdaptiveLossScaleUpdateCell
+    loss_scale_value: 65536
+    scale_factor: 2
+    scale_window: 1000
+  use_clip_grad: True
+  max_grad_norm: 1.0
+  local_norm: True
+```
+
+实验目标：
+
+- 观察动态 loss scale 是否会被调整
+- 对比固定 `loss_scale=1.0` 与动态 loss scale 的稳定性差异
+- 观察 `global_norm` 是否更平稳
+- 检查是否出现新的 `overflow`
+
+预期现象：
+
+- 如果当前固定 `1.0` 已足够稳定，第二组可能不会显著更好
+- 但第二组能帮助确认这个模型在当前配置下是否对 loss scale 敏感
+- 如果动态 loss scale 频繁调整，说明当前数值空间更接近边界
+
 ## 运行命令
 
 ### 阶段 1 基线跑通
@@ -289,6 +388,15 @@ python run_mindformer.py \
 cd /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0
 python run_mindformer.py \
   --config configs/qwen3/finetune_qwen3_8b_lora_1card_acc_group1.yaml \
+  --run_mode finetune
+```
+
+### 阶段 2 第二组实验
+
+```bash
+cd /mnt/hzl/10_qwen3_transfer/mindformers-r1.8.0
+python run_mindformer.py \
+  --config configs/qwen3/finetune_qwen3_8b_lora_1card_acc_group2.yaml \
   --run_mode finetune
 ```
 
@@ -314,16 +422,18 @@ local_norm 是否正常：
 
 ## 下一步计划
 
-第一组实验完成后，继续做第二组实验：
+当前下一步：
 
-- 动态 loss scale 对照实验
-
-计划新增配置文件：
-
-- `finetune_qwen3_8b_lora_1card_acc_group2.yaml`
+- 执行第二组实验 `acc_group2`
+- 收集 `step1/step2/step10/最后一步` 的：
+  - `loss`
+  - `global_norm`
+  - `overflow`
+  - `loss_scale`
 
 本文件后续继续追加：
 
-- 第一组实验结果
-- 第二组实验配置与结果
+- 第二组实验结果
+- 第一组与第二组对比结论
+- 是否需要进入长稳实验
 - 是否需要进入 `Dump` 分析
