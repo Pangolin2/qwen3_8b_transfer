@@ -1,0 +1,172 @@
+seed: 42
+output_dir: './output_qwen3_8b_lora_1card_acc_group1'
+load_checkpoint: ''
+load_ckpt_format: 'safetensors'
+src_strategy_path_or_dir: ''
+auto_trans_ckpt: False
+only_save_strategy: False
+resume_training: False
+use_parallel: False
+run_mode: 'finetune'
+use_legacy: False
+pretrained_model_dir: "/mnt/hzl/10_qwen3_transfer/model/Qwen3-8B"
+check_for_nan_in_loss_and_grad: True
+
+# Trainer configuration
+trainer:
+  type: CausalLanguageModelingTrainer
+  model_name: 'Qwen3'
+
+# Runner configuration
+runner_config:
+  epochs: 1
+  batch_size: 1
+  gradient_accumulation_steps: 1
+
+# Optimizer configuration
+optimizer:
+  type: AdamW
+  betas: [0.9, 0.95]
+  eps: 1.e-8
+  weight_decay: 0.0
+
+# Learning rate scheduler configuration
+lr_schedule:
+  type: ConstantWarmUpLR
+  learning_rate: 5.e-6
+  warmup_ratio: 0
+  total_steps: -1
+
+# Dataset configuration
+train_dataset: &train_dataset
+  input_columns: ["input_ids", "labels", "loss_mask", "position_ids"]
+  construct_args_key: ["input_ids", "labels", "loss_mask", "position_ids"]
+
+  data_loader:
+    type: HFDataLoader
+    load_func: 'load_dataset'
+    path: "json"
+    data_files: "/mnt/hzl/10_qwen3_transfer/data/alpaca-gpt4-data/alpaca_gpt4_data_test_100.json"
+    create_attention_mask: False
+    create_compressed_eod_mask: False
+    compressed_eod_mask_length: 128
+    use_broadcast_data: False
+    shuffle: False
+
+    handler:
+      - type: take
+        n: 100
+      - type: AlpacaInstructDataHandler
+        seq_length: 1024
+        padding: False
+        tokenizer:
+          trust_remote_code: True
+          padding_side: 'right'
+      - type: PackingHandler
+        seq_length: 1024
+        pack_strategy: 'pack'
+
+  num_parallel_workers: 4
+  python_multiprocessing: False
+  drop_remainder: True
+  numa_enable: False
+  prefetch_size: 1
+  seed: 1234
+train_dataset_task:
+  type: CausalLanguageModelDataset
+  dataset_config: *train_dataset
+
+# MindSpore context initialization configuration
+context:
+  mode: 0
+  device_target: "Ascend"
+  max_device_memory: "58GB"
+  memory_optimize_level: "O0"
+  jit_config:
+    jit_level: "O0"
+  ascend_config:
+    precision_mode: "must_keep_origin_dtype"
+    parallel_speed_up_json_path: "./configs/qwen3/parallel_speed_up.json"
+
+# Parallel configuration
+parallel_config:
+  data_parallel: 1
+  model_parallel: 1
+  pipeline_stage: 1
+  micro_batch_num: 1
+  use_seq_parallel: False
+  gradient_aggregation_group: 1
+micro_batch_interleave_num: 1
+
+# Parallel context configuration
+parallel:
+  parallel_mode: 0
+  enable_alltoall: False
+  full_batch: False
+
+# Recomputation configuration
+recompute_config:
+  recompute: False
+  select_recompute: False
+  parallel_optimizer_comm_recompute: False
+  mp_comm_recompute: False
+
+# Model configuration
+model:
+  model_config:
+    seq_length: 1024
+    qkv_concat: True
+    hidden_dropout: 0.0
+    input_sliced_sig: True
+    untie_embeddings_and_output_weights: True
+    position_embedding_type: "rope"
+    use_contiguous_weight_layout_attention: False
+    offset: 0
+    params_dtype: "float32"
+    compute_dtype: "bfloat16"
+    layernorm_compute_dtype: "float32"
+    softmax_compute_dtype: "float32"
+    rotary_dtype: "float32"
+    fp32_residual_connection: True
+
+    pet_config:
+      pet_type: lora
+      lora_rank: 8
+      lora_alpha: 16
+      lora_dropout: 0.1
+      lora_a_init: 'normal'
+      lora_b_init: 'zeros'
+      target_modules: '.*word_embeddings|.*linear_qkv|.*linear_proj|.*linear_fc1|.*linear_fc2'
+      freeze_include: ['*']
+      freeze_exclude: ['*lora*']
+
+monitor_config:
+  monitor_on: True
+  step_interval: 1
+
+# Callbacks configuration
+callbacks:
+  - type: MFLossMonitor
+  - type: TrainingStateMonitor
+  - type: CheckpointMonitor
+    prefix: "qwen3_8b_lora_acc_group1"
+    save_checkpoint_steps: 100
+    keep_checkpoint_max: 2
+    integrated_save: False
+    async_save: False
+    checkpoint_format: "safetensors"
+
+# Wrapper cell configuration
+runner_wrapper:
+  type: MFTrainOneStepCell
+  scale_sense: 1.0
+  use_clip_grad: True
+  max_grad_norm: 1.0
+  local_norm: True
+
+profile: False
+profile_start_step: 1
+profile_stop_step: 10
+init_start_profile: False
+profile_communication: False
+profile_memory: True
