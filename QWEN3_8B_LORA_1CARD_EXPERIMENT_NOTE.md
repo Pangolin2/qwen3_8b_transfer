@@ -437,3 +437,104 @@ local_norm 是否正常：
 - 第一组与第二组对比结论
 - 是否需要进入长稳实验
 - 是否需要进入 `Dump` 分析
+
+## 阶段 2 第二组实验结果
+
+实验名称：
+
+- `acc_group2`
+
+配置文件：
+
+- [finetune_qwen3_8b_lora_1card_acc_group2.yaml](/home/leon/Code/mindformers-r1.8.0/configs/qwen3/finetune_qwen3_8b_lora_1card_acc_group2.yaml)
+
+已知关键结果：
+
+- 最后一步日志：
+
+```text
+step 25/25, loss: 17.659529, overflow cond: False, loss_scale: 65536.0, global_norm: [24.985922]
+```
+
+- checkpoint 保存成功
+- 训练正常结束
+
+初步结论：
+
+- 第二组动态 loss scale 实验已跑通
+- 训练过程中未出现 `overflow`
+- `loss_scale` 在本次实验中保持为 `65536.0`
+- 这说明当前这组 `100` 条数据、`Qwen3-8B` 单卡 LoRA 配置下，数值空间较稳定，没有触发动态 loss scale 的缩放逻辑
+
+### 第一组与第二组对比结论
+
+第一组：
+
+- 固定 `loss_scale=1.0`
+- 无 overflow
+- 训练稳定结束
+
+第二组：
+
+- 动态 `loss_scale` 初始值 `65536.0`
+- 无 overflow
+- `loss_scale` 未发生回退
+- 训练稳定结束
+
+对比结论：
+
+- 当前这组小样本实验下，固定 loss scale 和动态 loss scale 都能稳定运行
+- 从目前结果看，没有证据表明第二组在稳定性上明显优于第一组
+- 同时也没有证据表明当前任务已经逼近数值边界
+
+因此，当前阶段可以得出：
+
+- 这份单卡 Qwen3-8B LoRA 配置在 `100` 条样本、`seq_length=1024` 下数值稳定
+- 后续如果继续做精度分析，重点应转向“长稳训练”而不是继续纠结 loss scale
+
+## 关于 Dump 的定位
+
+本次实验中测试了 `Dump`，主要目的仅为了解功能和产物形式，不作为当前问题定位主手段。
+
+说明：
+
+- 当前实验没有出现 `nan/inf`
+- 没有 `overflow`
+- `loss/global_norm` 虽有波动，但整体可训练
+- 因此暂时不需要把 `Dump` 作为主线调试工具
+
+结论：
+
+- 当前 `Dump` 仅作为介绍性验证使用
+- 正式精度排查仍以：
+  - `loss`
+  - `global_norm`
+  - `local_norm`
+  - `overflow`
+  - `loss_scale`
+  为主
+
+只有当后续长稳实验出现：
+
+- `nan/inf`
+- `overflow`
+- 某步 loss 明显异常
+- 某步 global norm 明显爆炸
+
+时，再进入 `Dump` 的逐层定位阶段更合适
+
+## 下一步建议
+
+建议进入阶段 3：长稳实验。
+
+优先顺序：
+
+1. 长稳实验 A：学习率置零
+   - 目的：排除优化器更新影响
+   - 观察 loss 是否仍异常漂移
+
+2. 长稳实验 B：恢复 `lr=5e-6`
+   - 目的：观察真实训练场景下长步数稳定性
+   - 重点看 `global_norm` 是否持续 spike
+
+如果后续长稳阶段出现异常，再决定是否正式启用 `Dump` 做逐层分析。
