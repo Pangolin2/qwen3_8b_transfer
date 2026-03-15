@@ -9,7 +9,7 @@ resume_training: False
 use_parallel: False
 run_mode: 'finetune'
 use_legacy: False
-pretrained_model_dir: "/path/to/Qwen3-8B"
+pretrained_model_dir: "/mnt/hzl/10_qwen3_transfer/model/Qwen3-8B"
 
 # Trainer configuration
 trainer:
@@ -46,8 +46,8 @@ train_dataset: &train_dataset
 
     # datasets load arguments
     load_func: 'load_dataset'
-    path: "llm-wizard/alpaca-gpt4-data-zh"
-    split: "train"
+    path: "json"
+    data_files: "/mnt/hzl/10_qwen3_transfer/data/alpaca-gpt4-data/alpaca_gpt4_data_test_100.json"
 
     # MindFormers dataset arguments
     create_attention_mask: False
@@ -160,6 +160,13 @@ runner_wrapper:
   scale_sense: 1.0
   use_clip_grad: True
   max_grad_norm: 1.0
+
+profile: False
+profile_start_step: 1
+profile_stop_step: 10
+init_start_profile: False
+profile_communication: False
+profile_memory: True
 
 profile: False
 profile_start_step: 1
