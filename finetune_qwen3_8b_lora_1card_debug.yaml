@@ -160,3 +160,13 @@ runner_wrapper:
   scale_sense: 1.0
   use_clip_grad: True
   max_grad_norm: 1.0
+
+profile: False
+profile_start_step: 1
+profile_stop_step: 10
+init_start_profile: False
+profile_communication: False
+profile_memory: True
+layer_scale: False
+layer_decay: 0.65
+lr_scale_factor: 256
