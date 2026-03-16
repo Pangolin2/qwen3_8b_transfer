@@ -16,11 +16,14 @@ parallel_config:
 
 pretrained_model_dir: '/mnt/hzl/10_qwen3_transfer/model/Qwen3-8B'
 
-generation:
+generation_config:
   max_length: 128
   do_sample: False
   top_k: 1
   top_p: 1.0
+  temperature: 1.0
+  repetition_penalty: 1.0
+  use_past: True
 
 model:
   model_config:

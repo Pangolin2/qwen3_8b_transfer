@@ -4,7 +4,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CONFIG_PATH="${ROOT_DIR}/configs/qwen3/predict_qwen3_8b_verify.yaml"
 MODEL_DIR="${MODEL_DIR:-/mnt/hzl/10_qwen3_transfer/model/Qwen3-8B}"
-PROMPT="${1:-请用一句话介绍你自己}"
+PROMPT="${1:-请用中文用三句话介绍你自己，并说明你能帮助用户完成哪些任务。}"
 
 cd "${ROOT_DIR}"
 
