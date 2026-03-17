@@ -1,0 +1,47 @@
+seed: 0
+output_dir: './output_qwen3_8b_stage1_eval'
+load_checkpoint: ''
+use_parallel: False
+run_mode: 'predict'
+use_legacy: False
+load_ckpt_format: 'ckpt'
+
+trainer:
+  type: CausalLanguageModelingTrainer
+  model_name: 'qwen3'
+
+parallel_config:
+  data_parallel: 1
+  model_parallel: 1
+
+pretrained_model_dir: '/mnt/hzl/10_qwen3_transfer/model/Qwen3-8B'
+
+generation_config:
+  max_length: 128
+  do_sample: False
+  top_k: 1
+  top_p: 1.0
+  temperature: 1.0
+  repetition_penalty: 1.0
+  use_past: True
+
+model:
+  model_config:
+    compute_dtype: "bfloat16"
+    layernorm_compute_dtype: "float32"
+    softmax_compute_dtype: "float32"
+    rotary_dtype: "bfloat16"
+    params_dtype: "bfloat16"
+
+context:
+  mode: 0
+  enable_graph_kernel: False
+  ascend_config:
+    precision_mode: "must_keep_origin_dtype"
+  max_device_memory: "59GB"
+  save_graphs: False
+  save_graphs_path: "./graph"
+
+parallel:
+  parallel_mode: "MANUAL_PARALLEL"
+  enable_alltoall: False
