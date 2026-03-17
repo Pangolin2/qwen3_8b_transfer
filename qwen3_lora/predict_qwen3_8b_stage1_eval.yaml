@@ -4,7 +4,7 @@ load_checkpoint: ''
 use_parallel: False
 run_mode: 'predict'
 use_legacy: False
-load_ckpt_format: 'ckpt'
+load_ckpt_format: 'safetensors'
 
 trainer:
   type: CausalLanguageModelingTrainer

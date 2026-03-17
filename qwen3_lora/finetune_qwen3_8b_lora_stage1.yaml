@@ -135,7 +135,7 @@ callbacks:
     keep_checkpoint_max: 2
     integrated_save: False
     async_save: False
-    checkpoint_format: "ckpt"
+    checkpoint_format: "safetensors"
 
 runner_wrapper:
   type: MFTrainOneStepCell
